@@ -1,0 +1,76 @@
+{% extends 'estoque/base.html' %}
+{% load static %}
+{% block content %}
+  {% if user.is_authenticated %}
+  <h2>Tabela de componentes</h2>
+  <p>Filtrar por:</p>
+  <div class="row">
+    <form class="" action="{% url 'filtrar' %}" method="GET">
+      <div class="col-md-3 form-group">
+        <label for="select-tipo">Tipo</label>
+        <select id="select-tipo" name="tipo" class="form-control">
+          <option value=''>Selecionar</option>
+          {% for tipo in tipos %}
+            <option value="{{ tipo }}">{{ tipo }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3 form-group">
+        <label for="select-fabricante">Fabricante</label>
+        <select id="select-fabricante" name="fabricante" class="form-control">
+          <option value=''>Selecionar</option>
+          {% for fabricante in fabricantes %}
+            <option value="{{ fabricante }}">{{ fabricante }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3 form-group">
+        <label for="select-local">Local</label>
+        <select id="select-local" name="local" class="form-control">
+          <option value=''>Selecionar</option>
+          {% for local in locais %}
+            <option value="{{ local }}">{{ local }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2 form-group">
+        <label for="query">Nome do componente</label>
+        <input type="text" name="query" class="form-control">
+      </div>
+      <div class="col-md-1 form-group">
+        <label for=""></label>
+        <button type="submit" class="btn btn-default btn-block">Buscar</button>
+      </div>
+    </form>
+  </div>
+  <hr>
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Quantidade</th>
+          <th>Tipo</th>
+          <th>Fabricante</th>
+          <th>Local</th>
+          <th>Aplicação</th>
+        </tr>
+      </thead>
+      {% for componente in componentes %}
+      <tbody>
+        <tr>
+          <td>{{ componente.nome }}</td>
+          <td>{{ componente.quantidade }} <a href="{% url 'remover' componente_id=componente.id %}"><span class="glyphicon glyphicon-minus"></span></a></td>
+          <td>{{ componente.tipo }}</td>
+          <td>{{ componente.fabricante }}</td>
+          <td>{{ componente.local }}</td>
+          <td>{{ componente.aplicacao }}</td>
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    {% else %}
+    <div class="jumbotron text-center">Logue-se ao sistema para acessar mais informações.</div>
+    {% endif %}
+{% endblock content %}

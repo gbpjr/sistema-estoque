@@ -1,0 +1,44 @@
+{% extends 'estoque/base.html' %}
+{% load static %}
+{% block content %}
+<strong>Quantas unidades de {{ componente }} deseja retirar?</strong>
+{% if mensagem %}
+  <p class="mensagem">{{ mensagem }}</p>
+{% endif %}
+<div class="row">
+  <form class="" action="{% url 'remover' componente_id=componente.id %}" method="post">
+    {% csrf_token %}
+    <div class="col-md-3 form-group">
+      <input type="number" min="1" max="9999" name="quantidade" value="{{ quantidade }}" class="form-control" required>
+    </div>
+    <div class="col-md-1">
+      <button type="submit" name="button" class="btn btn-default btn-block">Ok</button>
+    </div>
+  </form>
+</div>
+<hr>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Componente</th>
+      <th>Quantidade</th>
+      <th>Tipo</th>
+      <th>Fabricante</th>
+      <th>Local</th>
+      <th>Aplicação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ componente.nome }}</td>
+      <td>{{ componente.quantidade }}</td>
+      <td>{{ componente.tipo }}</td>
+      <td>{{ componente.fabricante }}</td>
+      <td>{{ componente.local }}</td>
+      <td>{{ componente.aplicacao }}</td>
+    </tr>
+  </tbody>
+</table>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+{% endblock content %}

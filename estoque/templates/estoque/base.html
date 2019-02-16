@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Sistema de Controle de Estoque</title>
+  </head>
+  <body>
+    <header class='page-header'>
+      <h1>Sistema de Controle de Estoque</h1>
+    </header>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        {% if user.is_authenticated %}
+          <div class="navbar-brand" href="{% url 'index' %}"><span id="site-name">Bem-vindo, <span class="username">{{ user.username }}.</span></span></div>
+        {% else %}
+          <div class="navbar-brand" href="{% url 'index' %}"><span id="site-name"></span></div>
+        {% endif %}
+      </div>
+      <ul class="nav navbar-nav">
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'index' %}">Início</a></li>
+          <li><span></span><a href="{% url 'logout' %}">Sair <span class="glyphicon glyphicon-log-out"></span></a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+    <div class="container corpo">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    <div id="footer">
+      <div class="container text-center">
+        <p>Copyright &copy; 2019 - Geovane Júnior.</a></p>
+      </div>
+    </div>
+  </body>
+</html>
