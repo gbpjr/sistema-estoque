@@ -12,7 +12,7 @@ def index(request, componentes=''):
     locais = Local.objects.all()
     tipos = Tipo.objects.all()
     fabricantes = Fabricante.objects.all()
-    componentes = Componente.objects.all()
+    componentes = Componente.objects.order_by('nome')
     return render(request, 'estoque/index.html', {'componentes': componentes, 'fabricantes': fabricantes, 'tipos': tipos, 'locais': locais})
 
 @login_required()
