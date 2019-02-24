@@ -44,7 +44,7 @@
     </form>
   </div>
   <hr>
-  <table class="table table-striped" id="tabela-componentes">
+  <table class="table table-striped" id='table'>
       <thead>
         <tr>
           <th>Componente</th>
@@ -68,6 +68,7 @@
       </tbody>
       {% endfor %}
     </table>
+    <button type="button" name="button" id="download">Baixar PDF</button>
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
     {% else %}
