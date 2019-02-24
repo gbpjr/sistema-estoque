@@ -79,5 +79,6 @@ def validar_remocao(qtde_total, qtde_retirada):
     else:
         return True
 
+@login_required
 def pdf(request):
     return render(request, 'estoque/pdf.html', {})

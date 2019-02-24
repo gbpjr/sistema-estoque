@@ -28,6 +28,7 @@
         {% if user.is_authenticated %}
           <li><a href="{% url 'index' %}">Início</a></li>
           <li><span></span><a href="{% url 'logout' %}">Sair <span class="glyphicon glyphicon-log-out"></span></a></li>
+          <li><a href="{% url 'pdf' %}">Gerar PDF</a></li>
         {% else %}
           <li><a href="{% url 'login' %}">Login</a></li>
         {% endif %}
