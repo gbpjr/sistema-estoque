@@ -5,5 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('estoque.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('api/componente/', include('estoque.api.urls')),
+    path('api/componentes/', include('estoque.api.urls')),
 ]

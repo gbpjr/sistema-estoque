@@ -15,7 +15,7 @@ def index(request, componentes=''):
     componentes = Componente.objects.all()
     return render(request, 'estoque/index.html', {'componentes': componentes, 'fabricantes': fabricantes, 'tipos': tipos, 'locais': locais})
 
-@login_required
+@login_required()
 def filtrar(request):
     filters = {}
     tipo = request.GET.get('tipo')
@@ -78,3 +78,6 @@ def validar_remocao(qtde_total, qtde_retirada):
         return False
     else:
         return True
+
+def pdf(request):
+    return render(request, 'estoque/pdf.html', {})
